@@ -3,10 +3,14 @@ import { useEffect } from 'react';
 import Resourcecard from '../components/resourcecard';
 import {Link} from "react-router-dom";
 
-const url = 'http://localhost:5001/?classTitle=';
+let url = 'http://localhost:5001/?classTitle=';
 const fetchData = async (title) => {
+    url += title
+    const student = JSON.parse(localStorage.getItem('token')).user;
+    const studentString = '&username='+student;
+    url += studentString;
   try {
-    const response = await fetch(url+title);
+    const response = await fetch(url);
     const body = await response.json();
     return body.classes;
   } catch (error) {

@@ -1,32 +1,55 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Classcard from '../components/classcard';
+import {Link} from "react-router-dom";
 
-const url = 'http://localhost:5001/?classTitle=';
+let url = 'http://localhost:5001/?classTitle=';
+const student = JSON.parse(localStorage.getItem('token')).user;
+const studentString = '&username='+student;
+url = url + studentString;
 const fetchData = async () => {
   try {
     const response = await fetch(url);
     const body = await response.json();
-    return body.classes;
+    return {allClasses: body.classes,
+            completedClasses: body.completed};
   } catch (error) {
     alert(error);
   }
 };
-
 let Classlist = () => {
     const [classes, setclasses] = useState('');
+    const [complete, setComplete] = useState('');
+    const notLoaded=()=>{
+      return classes === '' || complete ==='';
+    }
+    const checkForClass=(givenClass, classArray)=>{
+      return classArray.includes(givenClass);
+    }
     useEffect(() => {
-        let arValue = fetchData();
-        arValue.then(function(result){
-          setclasses(result);
-          console.log(result);
-        })
+      // let data = fetchData();
+      // data.then(function(result){
+        // setComplete(result);
+      // })
+      const asyncFn = async () => { 
+        try {
+          const response = await fetch(url);
+          const body = await response.json();
+          setclasses(body.classes);
+          setComplete(body.completed);
+          return {allClasses: body.classes,
+                  completedClasses: body.completed};
+        } catch (error) {
+          alert(error);
+        }
+       };
+      asyncFn();
     }, []);
     return (
         <div id="wrapper">
           <h1>Course Map:</h1>
             <div>
-                {classes === '' ? (
+                {notLoaded() ? (
                     <h1>Loading...</h1>
                 ) : (
                   <div id="classlist">
@@ -38,12 +61,15 @@ let Classlist = () => {
                       desc={classes.desc}
                       prereq={classes.prereq}
                       resources ={classes.resources}
+                      completed={checkForClass(classes.title,complete)}
+                      studentName={student}
                       />
                     </section>
                   ))}
                 </div>
                 )}
             </div>
+            <p><Link to={"/"} onClick={() => {localStorage.removeItem("token")}}> Log out </Link></p>
         </div>
     );
   }
