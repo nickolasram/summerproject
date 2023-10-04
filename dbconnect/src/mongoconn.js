@@ -41,6 +41,20 @@ export async function connectToCluster(uri) {
     }
  }
 
+ export async function readStudents(username) {
+    const uri = process.env.DB_URI;
+    let mongoClient;
+    try {
+        mongoClient = await connectToCluster(uri);
+        const db = mongoClient.db('classprep');
+        const collection = db.collection('group2');
+        let queryresult = await findAllInColl(collection, "username", username);
+        return queryresult[0];
+    } finally {
+        await mongoClient.close();
+    }
+}
+
 export async function authenticate(pUsername, pPassword) {
     let {password} = await readStudents(pUsername);
     if (pPassword != password){

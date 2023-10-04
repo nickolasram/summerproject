@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import Classcard from '../components/classcard';
 import {Link} from "react-router-dom";
+import Authenticated from '../components/Authentication';
 
 let url = 'http://localhost:5001/?classTitle=';
-const student = JSON.parse(localStorage.getItem('token')).user;
+const student = JSON.parse(localStorage.getItem('token'))?.user;
 const studentString = '&username='+student;
 url = url + studentString;
 const fetchData = async () => {
@@ -23,14 +24,14 @@ let Classlist = () => {
     const notLoaded=()=>{
       return classes === '' || complete ==='';
     }
+    if(!Authenticated()) {
+      window.history.pushState({}, "", "/");
+      window.location.reload();
+    }
     const checkForClass=(givenClass, classArray)=>{
       return classArray.includes(givenClass);
     }
     useEffect(() => {
-      // let data = fetchData();
-      // data.then(function(result){
-        // setComplete(result);
-      // })
       const asyncFn = async () => { 
         try {
           const response = await fetch(url);
@@ -69,7 +70,11 @@ let Classlist = () => {
                 </div>
                 )}
             </div>
-            <p><Link to={"/"} onClick={() => {localStorage.removeItem("token")}}> Log out </Link></p>
+            <button onClick={()=>{
+              localStorage.removeItem("token");
+              window.history.pushState({}, "", "/");
+              window.location.reload();
+            }}>Logout</button>
         </div>
     );
   }

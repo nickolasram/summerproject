@@ -11,9 +11,12 @@ let App = () => {
     const { token, setToken } = useToken();
 
     if(!Authenticated()) {
+        console.log("not authenticated")
          return <Login setToken={setToken} />
       }
-
+    if(Authenticated()) {
+        console.log("authenticated")
+     }
     return (
         <Router>
             <Routes>

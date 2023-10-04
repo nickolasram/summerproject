@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from "react";
 import Authenticated from '../components/Authentication';
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 async function loginUser(credentials) {
   return fetch('http://localhost:5001/login?username='+credentials.username+'&password='+credentials.password, {
@@ -34,12 +34,16 @@ export default function Login({setToken}) {
       setAuth(true);
     }
   }
-  let navi = useNavigate();
+  // let navi = useNavigate();
   if(auth || Authenticated()) {
-    navi('/Classlist');
+    // navi('/Classlist');
+    window.history.pushState({}, "Classlist", "/Classlist");
+    window.location.reload();
   }
   if(setToken==undefined){
-    navi("/");
+    // navi("/");
+    window.history.pushState({}, "Classlist", "/Classlist");
+    window.location.reload();
   }
   return(
     <div>

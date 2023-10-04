@@ -30,6 +30,17 @@ app.post('/login', async (req, res) => {
       success: true
   });
 });
+
+// app.get('/classes', async (req, res) => {
+//   res.type('json');
+//   res.status(200);
+//   let ress = await readStudents(req.query.username);
+//   res.json({
+//       classes: ress.classes,
+//       success: true
+//   });
+// });
+
 app.post('/update/add', async (req, res) => {
   res.type('json');
   res.status(200);

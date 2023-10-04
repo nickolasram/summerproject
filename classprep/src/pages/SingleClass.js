@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import Resourcecard from '../components/resourcecard';
 import {Link} from "react-router-dom";
+import Authenticated from '../components/Authentication';
 
 let url = 'http://localhost:5001/?classTitle=';
 const fetchData = async (title) => {
@@ -28,6 +29,10 @@ let SingleClass =props=> {
             setresources(result[0].resources);
         })
     }, []);
+    if(!Authenticated()) {
+        window.history.pushState({}, "Classlist", "/Classlist");
+        window.location.reload();
+      }
     return (
         <div id="wrapper">
             <div>
