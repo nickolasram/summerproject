@@ -40,7 +40,7 @@ const Classcard = props => {
     }
     return(
         <div className={props.type} id={props.title}>
-            <h2 className="link"><Link to={"/class/"+props.title}> {props.title} </Link></h2>
+            <h2  className={completed ? "compClass" : "IncClass"}><Link to={"/class/"+props.title}> {props.title} </Link></h2>
             <p><i>description: {props.desc}</i></p>
             {props.prereq === 'none' ? (
                 <p><i>no prerequisites</i></p>

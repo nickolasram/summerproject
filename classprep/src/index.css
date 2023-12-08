@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body{
-    background-color: eggshell;
+    background-color: white;
     font-family: 'Roboto Slab', serif;
 }
 #wrapper{
@@ -13,6 +13,8 @@ body{
     height: 100vh;
     border-inline: solid 4px black;
     overflow-y: scroll;
+    box-shadow: 0 0 20px lightgray;
+    background-color: ghostwhite;
 }
 h1{
     margin-block: .5em;
@@ -26,20 +28,31 @@ button:hover{
 }
 #classlist {
     display: grid;
-   grid-template-columns: repeat(3, 1fr);
+   grid-template-columns: repeat(1, 1fr);
 }
-#classlist>section:nth-child(odd){
-    background-color: cadetblue;
+#classlist>section:nth-child(even){
+    /* background-color: rgb(129, 213, 216); */
+    background-color: #004da8;
+    color: white;
+}
+#classlist>section:nth-child(even)>*,
+#classlist>section:nth-child(even)>*>*>*,
+#classlist>section:nth-child(even)>*>*>*>*>*{
+    color: white;
+}
+#classlist>section:nth-child(even)>*>*>button{
+    color: black;
 }
 ul{
     list-style-type: none;
 }
 .class{
     padding-block-end: .5em;
-    padding-inline-start: .5em;
+    /* padding-inline-start: .5em; */
 }
 .class>*{
-    margin-block-start: .5em;
+    padding-inline-start: .5em;
+    padding-block-start: .5em;
 }
 .resourceCard>*{
     margin-block: .5em;
@@ -65,4 +78,84 @@ ul{
     display: flex;
     flex-direction: row;
     gap: 1em;
+}
+.loginPage{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* padding-top: 15%; */
+}
+.loginForm{
+    /* outline: 2px solid black; */
+    background-color: #004da8;
+    /* margin-top: 25%;
+    margin-bottom: 25%; */
+    height: fit-content;
+    padding-top: 1em;
+    padding-left: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .5em;
+    /* position: relative; */
+    margin-top: 200px;
+    color: white;
+}
+#header{
+    padding-inline-start: .5em;
+    background-color: #004da8;
+    margin-top: 0;
+    padding-block: .5em;
+    color: white;
+}
+.loginForm::before{
+    content: "";
+    background-image: url('./north-seattle-tree-frogs.png');
+    position: absolute;
+    top: -60px;
+    width: 400px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left top;
+    height: 140px;
+    margin-top: 200px;
+}
+#logout{
+    padding:1em;
+    size: 1.5rem;
+    position: absolute;
+    bottom: 1em;
+    right: 2em;
+}
+.comboHeading{
+    background-color: #004da8;
+    padding-bottom: .5em;
+    color: white;
+}
+#navBack>*{
+    color: white;
+}
+#listHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 1em;
+    background-color: #004da8;
+    color: white;
+}
+#listHeader>p{
+    font-weight: bold;
+}
+/* .compClass>*{
+    color: rgb(42, 54, 42);
+} */
+.compClass>*::after{
+    content: "✅";
+    text-decoration: none;
+    font-size: .75rem;
+}
+.IncClass>*,
+.compClass>*{
+    color: black;
 }

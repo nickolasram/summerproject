@@ -40,8 +40,10 @@ let SingleClass =props=> {
                     <h1>Loading...</h1>
                 ) : (
                 <div className="class">
-                    <p><Link to={"/"}> back to full list </Link></p>
-                    <h1>{course.title}</h1>
+                    <div className='comboHeading'> 
+                        <p id='navBack'><Link to={"/"}> back to full list </Link></p>
+                        <h1>{course.title}</h1>
+                    </div>
                     <p><em>{course.desc}</em></p>
                     <p className="link"><strong>prerequisite:</strong> <Link to={"/class/"+course.prereq}> {course.prereq} </Link></p>
                     <p><strong>Useful resources to prepare:</strong></p>

@@ -46,8 +46,10 @@ export default function Login({setToken}) {
     window.location.reload();
   }
   return(
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div  id="wrapper">
+      <h1 id='header'>Degree Tracker</h1>
+    <div  className='loginPage'>
+      <form onSubmit={handleSubmit} className='loginForm'>
         <label>
           <p>Username</p>
           <input type="text" onChange={e => setUserName(e.target.value)}/>
@@ -57,12 +59,13 @@ export default function Login({setToken}) {
           <input type="password" onChange={e => setPassword(e.target.value)}/>
         </label>
         <div>
-          <button type="submit">Submit</button>
+          <button type="submit">Login</button>
         </div>
         <div className={visibility}>
           <p>error. Username and Password do not match.</p>
         </div>
       </form>
+    </div>
     </div>
   )
 }

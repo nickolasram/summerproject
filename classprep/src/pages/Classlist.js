@@ -48,7 +48,10 @@ let Classlist = () => {
     }, []);
     return (
         <div id="wrapper">
-          <h1>Course Map:</h1>
+          <div id='listHeader'>
+            <h1>Course Map:</h1>
+            <p>Completed: {complete.length}/{classes.length}</p>
+          </div>
             <div>
                 {notLoaded() ? (
                     <h1>Loading...</h1>
@@ -70,7 +73,7 @@ let Classlist = () => {
                 </div>
                 )}
             </div>
-            <button onClick={()=>{
+            <button id='logout' onClick={()=>{
               localStorage.removeItem("token");
               window.history.pushState({}, "", "/");
               window.location.reload();
