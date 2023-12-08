@@ -7,7 +7,7 @@
 ### Running the back-end
 1. Set up your database entitled 'classprep' on mongodb with two groups--group1 and group2.
 2. An example of the database schemas are at the end of this document
-3. Set up a .env file within your own copy of the dbconnect folder. Within the file, set DB_URI to equal your mongodb connection url.
+3. Set up a .env file within your own copy of the dbconnect/src folder. Within the file, set DB_URI to equal your mongodb connection url.
 4. From within the command console run **node index.js** within the dbconnect/src folder
 ### Running the front-end
 1. from within the command console run **npm start** within the classprep folder
